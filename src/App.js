@@ -6,7 +6,9 @@ import './App.css'
 
 class Controls extends Component {
   render () {
-    return <p>Controls</p>
+    return <div>
+      <p>$ {this.props.money}</p>
+    </div>
   }
 }
 
@@ -19,55 +21,87 @@ class Maze extends Component {
     super(props)
     this.state = {
       maze: generateMaze(props),
+      position: {
+        row: 0,
+        col: 0,
+      },
+    }
+    this.onKeyDown = (evt) => {
+      // TODO
     }
   }
 
   render () {
-    return <table style={{
-      borderCollapse: 'collapse',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    }}>
-      <tbody>
-        { this.state.maze.map(row => (
-          <tr key={row.y}>
-            { row.map(col => (
-              <td
-                key={col.x}
-                style={{
-                  borderTop: wall(col.top),
-                  borderBottom: wall(col.bottom),
-                  borderLeft: wall(col.left),
-                  borderRight: wall(col.right),
-                  whiteSpace: 'pre',
-                  fontFamily: 'monospace',
-                  textAlign: 'left',
-                  borderCollapse: true,
-                  height: '3em',
-                  width: '3em',
-                }}
-              >
-                &nbsp;
-              </td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    return <div>
+      <table style={{
+        borderCollapse: 'collapse',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+      }}
+      onKeyDown={this.onKeyDown}
+      >
+        <tbody>
+          { this.state.maze.map(row => (
+            <tr key={row.y}>
+              { row.map(col => (
+                <td
+                  key={col.x}
+                  style={{
+                    borderTop: wall(col.top),
+                    borderBottom: wall(col.bottom),
+                    borderLeft: wall(col.left),
+                    borderRight: wall(col.right),
+                    height: '3em',
+                    width: '3em',
+                  }}
+                >
+                  &nbsp;
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <button
+        onClick={this.props.onSolve}
+      >
+        Solve!
+      </button>
+    </div>
   }
 }
 
 class App extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      money: 0,
+      rows: 2,
+      cols: 2,
+      position: {
+        row: 0,
+        col: 0,
+      },
+    }
+    this.onSolve = () => {
+      console.log(`Solved!  Money=${this.state.money}, rows=${this.state.rows}, cols=${this.state.cols}`)
+      this.setState((oldState) => ({
+        money: oldState.money + oldState.rows * oldState.cols,
+      }))
+    }
+  }
+
   render () {
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Welcome to React</h1>
+          <Controls money={this.state.money} />
         </header>
-        <Controls />
         <Maze
-          rows={8}
-          cols={8}
+          rows={this.state.rows}
+          cols={this.state.cols}
+          onSolve={this.onSolve}
         />
         <img src={logo} className="App-logo" alt="logo" />
       </div>

@@ -1,7 +1,11 @@
 module.exports = {
-  "extends": "standard",
+  "extends": [
+    "standard",
+    "plugin:react/recommended",
+  ],
   "plugins": [
-    "jest"
+    "jest",
+    "react",
   ],
   "env": {
     "jest": true,
@@ -10,11 +14,6 @@ module.exports = {
   "rules": {
     "react/prop-types": "off", // Temporary
     "react/jsx-filename-extension": "off",
-    "jsx-a11y/anchor-is-valid": [
-      "error", {
-        "components": [ "Link" ],
-        "specialLink": [ "to" ],
-      }
-    ],
+    "comma-dangle": ["error", "always-multiline"],
   }
 };

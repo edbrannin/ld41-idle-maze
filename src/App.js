@@ -7,7 +7,7 @@ import './App.css'
 
 const rowPrice = ({ rows }) => rows * rows
 const colPrice = ({ cols }) => cols * cols
-const solveAward = ({ rows, cols }) => rows * cols
+const solveAward = ({ rows, cols }) => (rows - 1) * (cols - 1)
 
 class App extends Component {
   constructor (props) {

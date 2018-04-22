@@ -133,6 +133,7 @@ class Maze extends Component {
 
   render () {
     return <div>
+      <p>Move around the maze with the arrow keys.  Make it bigger to earn more points!</p>
       <EventListener
         target="window"
         onKeyDown={this.onKeyDown}
@@ -160,22 +161,27 @@ class Maze extends Component {
           ))}
         </tbody>
       </table>
-      <a
-        onClick={this.props.onSolve}
-        style={{
-          display: 'block',
-          margin: '1em',
-          padding: '1em',
-          borderRadius: '1em',
-          backgroundColor: 'green',
-          border: '2px solid darkgreen',
-          width: '25%',
-          marginLeft: 'auto',
-          marginRight: 'auto',
-        }}
-      >
-        Solve!
-      </a>
+      <div style={{
+        backgroundColor: 'LIGHTCORAL',
+      }}>
+        <h3>Debug Stuff</h3>
+        <a
+          onClick={this.props.onSolve}
+          style={{
+            display: 'block',
+            margin: '1em',
+            padding: '1em',
+            borderRadius: '1em',
+            backgroundColor: 'red',
+            border: '2px solid darkred',
+            width: '25%',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+          }}
+        >
+          Solve!
+        </a>
+      </div>
     </div>
   }
 }

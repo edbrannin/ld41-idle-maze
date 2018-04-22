@@ -1,5 +1,16 @@
 import React from 'react'
 
+import './Controls.css'
+
+const BuyButton = ({ onClick, name, price, money }) => (
+  <a
+    onClick={onClick}
+    className={`BuyButton ${money < price ? 'disabled' : ''}`}
+  >
+    Buy {name} ${price}
+  </a>
+)
+
 const Controls = ({
   money,
   rowPrice,
@@ -10,8 +21,8 @@ const Controls = ({
   <div>
     <p>$ {money}</p>
     <p>
-      <button onClick={buyRow}>Buy Row ${rowPrice}</button>
-      <button onClick={buyCol}>Buy Column ${colPrice}</button>
+      <BuyButton money={money} onClick={buyRow} price={rowPrice} name="Row" />
+      <BuyButton money={money} onClick={buyCol} price={colPrice} name="Column" />
     </p>
   </div>
 )

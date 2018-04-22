@@ -1,0 +1,15 @@
+.BuyButton {
+  transition-property: background-color, margin, padding, opacity;
+  transition-duration: 0.5s;
+  display: inline-block;
+  background-color: green;
+  padding: 1em;
+  margin: 1em;
+  opacity: 1;
+}
+
+.disabled {
+  background-color: darkgray;
+  opacity: 0.5;
+  color: lightgray;
+}

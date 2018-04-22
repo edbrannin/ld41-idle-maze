@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import EventListener from 'react-event-listener';
+import EventListener from 'react-event-listener'
 import mazeGenerator from 'generate-maze'
 
 const generateMaze = ({ cols, rows }) => mazeGenerator(cols, rows)

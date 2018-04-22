@@ -6,6 +6,7 @@
     "generate-maze": "^0.2.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
+    "react-event-listener": "^0.5.3",
     "react-game-kit": "^1.0.6",
     "react-scripts": "1.1.4"
   },

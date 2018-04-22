@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import EventListener from 'react-event-listener';
 import mazeGenerator from 'generate-maze'
 
 const generateMaze = ({ cols, rows }) => mazeGenerator(cols, rows)
@@ -18,7 +18,6 @@ const delta = (col, row) => ({
  * down = 40
  */
 const keyDirection = ({ keyCode }, walls = {}) => {
-  console.log(`Moving by ${keyCode} with walls`, walls)
   if (keyCode === 37 && !walls.left) {
     return delta(-1, 0)
   } else if (keyCode === 38 && !walls.top) {
@@ -104,10 +103,8 @@ class Maze extends Component {
     }
 
     this.onKeyDown = (evt) => {
-      console.log(`Got keypress: ${evt.keyCode}`)
       const direction = keyDirection(evt, this.here())
       if (direction) {
-        console.log(`MOVE:`, direction)
         const newPosition = {
           row: this.state.position.row + direction.rows,
           col: this.state.position.col + direction.cols,
@@ -136,14 +133,16 @@ class Maze extends Component {
 
   render () {
     return <div>
+      <EventListener
+        target="window"
+        onKeyDown={this.onKeyDown}
+      />
       <table style={{
         borderCollapse: 'collapse',
         marginLeft: 'auto',
         marginRight: 'auto',
         marginTop: '1em',
       }}
-      onKeyDown={this.onKeyDown}
-      tabIndex="0"
       >
         <tbody>
           { this.state.maze.map(row => (

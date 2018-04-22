@@ -47,7 +47,7 @@ class App extends Component {
     }
 
     this.onSolve = () => {
-      console.log(`Solved!  Money=${this.state.money}, rows=${this.state.rows}, cols=${this.state.cols}`)
+      // console.log(`Solved!  Money=${this.state.money}, rows=${this.state.rows}, cols=${this.state.cols}`)
       this.setState((oldState) => ({
         money: oldState.money + solveAward(oldState),
       }))

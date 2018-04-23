@@ -105,27 +105,6 @@ class Maze extends Component {
           rows: this.props.rows,
         }}
       />
-      <div style={{
-        backgroundColor: 'LIGHTCORAL',
-      }}>
-        <h3>Debug Stuff</h3>
-        <a
-          onClick={this.props.onSolve}
-          style={{
-            display: 'block',
-            margin: '1em',
-            padding: '1em',
-            borderRadius: '1em',
-            backgroundColor: 'red',
-            border: '2px solid darkred',
-            width: '25%',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-          }}
-        >
-          Solve!
-        </a>
-      </div>
     </div>
   }
 }

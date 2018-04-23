@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 
 import Controls from './Controls'
 import Maze from './Maze'
-import logo from './logo.svg'
 import './App.css'
 
 const rowPrice = ({ rows }) => rows * rows
@@ -73,7 +72,6 @@ class App extends Component {
           onSolve={this.onSolve}
           solveAward={solveAward(this.state)}
         />
-        <img src={logo} className="App-logo" alt="logo" />
       </div>
     )
   }

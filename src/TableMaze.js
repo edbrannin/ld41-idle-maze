@@ -56,6 +56,7 @@ const TableMaze = ({
       marginLeft: 'auto',
       marginRight: 'auto',
       marginTop: '1em',
+      marginBottom: '1em',
     }}
     >
       <tbody>

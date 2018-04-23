@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import EventListener from 'react-event-listener'
 import mazeGenerator from 'generate-maze'
+import TableMaze, { isGoal } from './TableMaze'
 
 const generateMaze = ({ cols, rows }) => mazeGenerator(cols, rows)
-const wall = exists => exists && '2px solid black'
-const isGoal = ({ x, y }, { rows, cols }) => (rows - 1 === y) && (cols - 1 === x)
 
 const delta = (col, row) => ({
   rows: row,
@@ -29,47 +28,6 @@ const keyDirection = ({ keyCode }, walls = {}) => {
   } else {
     return null
   }
-}
-
-const MazeCell = ({
-  cell,
-  solveAward,
-  position,
-  mazeSize,
-}) => {
-  const { x, y } = cell
-  let child = (<span>&nbsp;</span>)
-  let backgroundColor
-  if (isGoal(cell, mazeSize)) {
-    backgroundColor = 'gold'
-    child = (<span>{ solveAward }</span>)
-  } else if (x === position.col && y === position.row) {
-    child = (
-      <div style={{
-        borderRadius: '50%',
-        backgroundColor: 'RebeccaPurple',
-        height: '1.5em',
-        width: '1.5em',
-      }}>&nbsp;</div>
-    )
-  }
-
-  return (
-    <td
-      key={cell.x}
-      style={{
-        borderTop: wall(cell.top),
-        borderBottom: wall(cell.bottom),
-        borderLeft: wall(cell.left),
-        borderRight: wall(cell.right),
-        height: '2em',
-        width: '2em',
-        backgroundColor: backgroundColor,
-      }}
-    >
-      {child}
-    </td>
-  )
 }
 
 class Maze extends Component {
@@ -138,29 +96,15 @@ class Maze extends Component {
         target="window"
         onKeyDown={this.onKeyDown}
       />
-      <table style={{
-        borderCollapse: 'collapse',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        marginTop: '1em',
-      }}
-      >
-        <tbody>
-          { this.state.maze.map(row => (
-            <tr key={row[0].y}>
-              { row.map(cell => (
-                <MazeCell
-                  key={cell.x}
-                  cell={cell}
-                  solveAward={this.props.solveAward}
-                  position={this.state.position}
-                  mazeSize={this.props}
-                />
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <TableMaze
+        maze={this.state.maze}
+        playerLocation={this.state.position}
+        solveAward={this.props.solveAward}
+        goalLocation={{
+          cols: this.props.cols,
+          rows: this.props.rows,
+        }}
+      />
       <div style={{
         backgroundColor: 'LIGHTCORAL',
       }}>

@@ -58,7 +58,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">LD41: Idle Maze</h1>
+          <h1 className="App-title">LD41: Incremental Maze</h1>
           <Controls
             money={this.state.money}
             buyRow={this.buyRow}
